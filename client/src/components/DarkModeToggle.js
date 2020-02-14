@@ -3,7 +3,7 @@ import { useDarkMode } from '../hooks/useDarkMode';
 import './DarkModeToggle.css'
 
 const DarkModeToggle = () => {
-  const [darkMode, setDarkMode] = useDarkMode(false);
+  const [darkMode, setDarkMode] = useDarkMode('Dark Mode');
 
   const toggleMode = e => {
     e.preventDefault();
