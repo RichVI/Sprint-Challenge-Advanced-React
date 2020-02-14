@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import axios from 'axios';
+import { PlayerCard } from './components/PlayerCard';
+import { DarkModeToggle } from './components/DarkModeToggle';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+class App extends Component{
+    state = ({
+      data: []
+    });
+
+  componentDidMount(){
+    axios
+    .get('http://localhost:5000/api/players')
+    .then( res =>{
+        console.log(res);
+        this.setState({
+          data: res.data
+        })
+    })
+    .catch(err => console.log("data not retrieved, error", err))
+  }
+
+  render(){
+    return(
+      <div className="container" >
+        <div className="h1AndToggle">
+          <DarkModeToggle />
+          <h1>Player Card</h1>
+        </div>
+
+       {this.state.data.map(data => {
+         return(
+        <div data-testid="axiosData" className="cards" key={data.id}> 
+          <PlayerCard 
+            name={data.name}
+            country={data.country}
+            searches={data.searches}
+          />
+        </div>
+       )})}
     </div>
-  );
+    )
+  }
 }
 
-export default App;
+export { App };

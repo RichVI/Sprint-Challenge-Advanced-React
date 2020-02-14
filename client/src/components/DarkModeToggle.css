@@ -1,0 +1,30 @@
+.dark-mode__toggle {
+  border: 2px solid black;
+  height: 30px;
+  position: relative;
+  width: 60px;
+}
+
+.toggle {
+  background: black;
+  height: 30px;
+  left: 0;
+  position: absolute;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  width: 20px;
+}
+
+.toggled {
+  background: white;
+  left: 40px;
+}
+
+.dark-mode {
+  color: #fff;
+  background-color: #313843;
+}
+
+.dark-mode .PlayerCard {
+  border: 1px solid white;
+}
